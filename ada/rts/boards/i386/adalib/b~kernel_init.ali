@@ -1,0 +1,64 @@
+V "GNAT Lib v4.8"
+A -O2
+A -ffunction-sections
+A -fdata-sections
+A --RTS=/home/nathan/personal/testos/rts/boards/i386
+A -g
+A -m32
+A -march=i386
+A -g
+A -ggdb
+A -gnatA
+A -gnatWb
+A -gnatiw
+A -g
+A -gnatws
+P
+
+RN
+RR NO_EXCEPTION_PROPAGATION
+RV NO_IMPLEMENTATION_ATTRIBUTES
+RV NO_IMPLEMENTATION_PRAGMAS
+RV NO_IMPLEMENTATION_RESTRICTIONS
+RV NO_OBSOLESCENT_FEATURES
+RV SPARK
+
+U ada_main%b		b~kernel_init.adb	06195ad3 NE OO PK IL
+W system%s		system.ads		system.ali
+
+U ada_main%s		b~kernel_init.ads	d5b6cc72 EE NE OO PK IL
+W system%s		system.ads		system.ali
+
+D b~kernel_init.ads	20160104024510 4ca8bccf
+D b~kernel_init.adb	20160104024510 4ab1e61c
+D system.ads		20160103055241 991e70bd
+X 1 b~kernel_init.ads
+4K9*ada_main 62l5 62e13 2|5b14 53l5 53t13
+8a4*GNAT_Version{string} 10r22
+12a4*Ada_Main_Program_Name{string} 13r22 2|29r52
+15U14*adainit 16i<c,adainit>22 2|13b14 23l8 23t15 33s7
+18U14*main 19i<c,main>22 2|28b14 35t7
+21M9*Version_32 22r22 24r22 26r22 28r22 30r22 32r22 34r22 36r22 38r22 40r22
+. 42r22 44r22
+22m4*u00001{21M9} 23r22
+24m4*u00002{21M9} 25r22
+26m4*u00003{21M9} 27r22
+28m4*u00004{21M9} 29r22
+30m4*u00005{21M9} 31r22
+32m4*u00006{21M9} 33r22
+34m4*u00007{21M9} 35r22
+36m4*u00008{21M9} 37r22
+38m4*u00009{21M9} 39r22
+40m4*u00010{21M9} 41r22
+42m4*u00011{21M9} 43r22
+44m4*u00012{21M9} 45r22
+X 2 b~kernel_init.adb
+8i4 E03{short_integer} 8m45 8r45 18m7 18r14
+9i4 E10{short_integer} 9m45 9r45 21m7 21r14
+10i4 E12{short_integer} 10m45 10r45 22m7 22r14
+25U14 Ada_Main_Program 26b<ada,_ada_kernel_init>24 34s7
+29m7 Ensure_Reference{3|67M9} 30r24
+X 3 system.ads
+40K9*System 1|3w6 2|29r34 3|157e11
+67M9*Address 2|29r41
+

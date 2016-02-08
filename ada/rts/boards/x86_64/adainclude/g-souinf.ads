@@ -1,0 +1,1 @@
+/home/nathan/personal/testos/rts/src/g-souinf.ads

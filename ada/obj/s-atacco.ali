@@ -1,0 +1,49 @@
+V "GNAT Lib v4.8"
+A -O2
+A -ffunction-sections
+A -fdata-sections
+A -gnatp
+A -gnatg
+A -gnat2005
+A -g
+A -gnatg
+A -m32
+A -march=i386
+A -gnatA
+P NS
+
+RN
+RR NO_ALLOCATORS
+RR NO_DELAY
+RR NO_DISPATCH
+RR NO_ENUMERATION_MAPS
+RR NO_EXCEPTION_PROPAGATION
+RR NO_FINALIZATION
+RR NO_IMPLICIT_DYNAMIC_CODE
+RR NO_PROTECTED_TYPES
+RR NO_RECURSION
+RR NO_SECONDARY_STACK
+RR NO_TASKING
+RV NO_IMPLEMENTATION_ATTRIBUTES
+RV NO_IMPLEMENTATION_PRAGMAS
+RV NO_IMPLEMENTATION_RESTRICTIONS
+RV NO_OBSOLESCENT_FEATURES
+RV SPARK
+
+U system.address_to_access_conversions%s  s-atacco.ads  d528a192 NE OL PR PK GE
+W system%s		system.ads		system.ali
+
+D system.ads		20160103055241 991e70bd
+D s-atacco.ads		20160102191302 4c36d12f
+X 1 system.ads
+40K9*System 157e11 2|39r9 63r5
+67M9*Address 2|57r33 58r56
+X 2 s-atacco.ads
+37+9 Object 43r7 47r38
+39k16*Address_To_Access_Conversions 1|40k9 2|37z9 63l12 63e41
+47P9*Object_Pointer(37+9) 48r8 50r31 57r56 58r33
+57V13*To_Pointer{47P9} 57>25 60b30
+57m25 Value{1|67M9}
+58V13*To_Address{1|67M9} 58>25 61b30
+58p25 Value{47P9}
+

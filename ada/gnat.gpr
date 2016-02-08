@@ -1,0 +1,36 @@
+library project gnat is
+  type Arch_Name is ("x86_64", "i386");
+  type Board_Name is ("pc");
+
+  Arch  : Arch_Name  := external("Arch");
+  Board : Board_Name := external("Board");
+
+  for Source_Dirs use ("rts/boards/" & Arch & "/adainclude");
+  for Object_Dir use "obj";
+
+  package Builder is
+    Basic_Switches := ("-gnat2005", "-g", "-x", "-a", "-gnatg",
+                       "-gnatec=../gnat.adc");
+
+    case Board is
+      when "pc" =>
+        case Arch is
+          when "i386" =>
+            for Default_Switches("Ada") use Basic_Switches &
+              ("-m32", "-march=i386");
+          when "x86_64" =>
+            for Default_Switches("Ada") use Basic_Switches &
+              ("-m64", "-march=x86-64");
+        end case;
+    end case;
+  end Builder;
+
+  package Compiler is
+    for Default_Switches("Ada") use ("-O2", "-ffunction-sections", "-fdata-sections");
+  end Compiler;
+
+  for Library_Kind use "static";
+  for Library_Name use "gnat-4.8";
+  for Library_Dir use "rts/boards/" & Arch & "/adalib";
+end gnat;
+

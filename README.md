@@ -6,7 +6,7 @@ This repository is a collection of bare bones kernels in various languages. This
 ## List of Languages
 
 - Current
-  - Ada (need to move)
+  - Ada (mostly complete)
   - C (need to move)
   - ATS (not completed yet)
   - Scheme (not completed yet)

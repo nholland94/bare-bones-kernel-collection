@@ -1,0 +1,47 @@
+project Test_OS is
+  type Arch_Name is ("x86_64", "i386");
+  type Board_Name is ("pc");
+
+  Arch  : Arch_Name  := external("Arch");
+  Board : Board_Name := external("Board");
+
+  for Source_Dirs use ("src", "src/" & Board);
+
+  for Object_Dir use "obj";
+  for Exec_Dir use ".";
+  for Main use ("kernel_init.adb");
+
+  package Builder is
+    Basic_Switches := ("-gnat2005", "-g", "-x", "-a", "gnatg",
+                       "-gnatec=../gnat.adc", "-gnaty-I", "-gnaty+d");
+
+    case Board is
+      when "pc" =>
+        case Arch is
+          when "i386" =>
+            for Default_Switches("Ada") use Basic_Switches &
+              ("-m32", "-march=i386");
+          when "x86_64" =>
+            for Default_Switches("Ada") use Basic_Switches &
+              ("-m64", "-march=x86-64");
+        end case;
+    end case;
+
+    for Executable("kernel_init.adb") use "kernel.bin";
+  end Builder;
+
+  package Compiler is
+    case Board is
+      when "pc" =>
+        for Default_Switches("Ada") use
+          ("-O2", "-g", "-ggdb", "-ffunction-sections", "-fdata-sections");
+          -- ("-O0", "-g", "-ggdb", "-ffunction-sections", "-fdata-sections");
+    end case;
+  end Compiler;
+
+  package Linker is
+    for Default_Switches("Ada") use
+      ("-Wl,--gc-sections", "-static", "-nostartfiles", "-nodefaultlibs",
+       "-T../src/" & Board & "/" & Arch & "/linker.ld", "-v", "--verbose");
+  end Linker;
+end Test_OS;
