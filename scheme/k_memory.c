@@ -33,8 +33,10 @@ void *k_malloc(size_t size) {
   void *k_heap_base;
   size_t required_size = size + sizeof(size_t);
   struct free_zone *zone = free_zone_top;
+  struct free_zone *parent_zone = NULL;
 
   while(zone != NULL && !(zone->zone_size >= required_size)) {
+    parent_zone = zone;
     zone = zone->next_free_zone;
   }
 
@@ -45,7 +47,13 @@ void *k_malloc(size_t size) {
   if(zone->zone_size == required_size) {
     struct free_zone *old_free_zone_top = zone;
     k_heap_base = old_free_zone_top->base_address;
-    zone = zone->next_free_zone;
+
+    if(parent_zone != NULL) {
+      parent_zone->next_free_zone = zone->next_free_zone;
+    } else {
+      free_zone_top = zone->next_free_zone;
+    }
+
     k_free(old_free_zone_top);
   } else {
     k_heap_base = zone->base_address;
@@ -59,7 +67,7 @@ void *k_malloc(size_t size) {
 
 // Does not validate whether or not a pointer being free'd is valid... be careful
 void k_free(void *ptr) {
-  size_t *size_ptr = ptr - sizeof(ptr);
+  size_t *size_ptr = ptr - sizeof(size_t);
   size_t size = *size_ptr;
   *size_ptr = 0;
 
@@ -67,7 +75,7 @@ void k_free(void *ptr) {
   struct free_zone *new_free_zone = (struct free_zone *)k_malloc(sizeof(struct free_zone));
   size_t zone_size = size + 1;
   if(new_free_zone == NULL) {
-    if(*size_ptr < sizeof(struct free_zone)) {
+    if(size < sizeof(struct free_zone)) {
       panic("INTERNAL HEAP ERROR: cannot allocate free_zone in heap");
     } else {
       *size_ptr = sizeof(struct free_zone);
