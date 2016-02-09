@@ -1,7 +1,5 @@
 staload "terminal.sats"
 
-implement print_char(character) = output_char_at(0, 0, character)
-
 implement print_string(str) = let
     fun loop
       {n:nat | n > 0}
@@ -10,7 +8,12 @@ implement print_string(str) = let
         if pos = (VGA_WIDTH * VGA_HEIGHT) then ()
         else if string_is_empty(str) then ()
         else let
-          val () = output_char_at(pos % VGA_WIDTH, pos / VGA_WIDTH, string_head(str))
+          // ATS isn't smart enough to figure out that this fits
+          // the constraint of VgaX... how annoying.
+          // val x: VgaX = pos % VGA_WIDTH
+          val x: VgaX = pos - (pos / VGA_WIDTH)
+          val y: VgaY = pos / VGA_WIDTH
+          val () = output_char_at(x, y, string_head(str))
         in loop(str, pos + 1) end
   in loop(str, 0) end
 
