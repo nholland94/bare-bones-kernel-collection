@@ -1,0 +1,78 @@
+V "GNAT Lib v4.9"
+A -O2
+A -ffunction-sections
+A -fdata-sections
+A --RTS=/home/nathan/bare-bones-kernel-collection/ada/rts/boards/i386
+A -gnat2005
+A -g
+A -gnaty-
+A -gnatyI
+A -gnaty+
+A -gnatyd
+A -m32
+A -march=i386
+A -g
+A -ggdb
+A -gnatA
+P NS
+
+RN
+RR NO_ALLOCATORS
+RR NO_DELAY
+RR NO_DISPATCH
+RR NO_ENUMERATION_MAPS
+RR NO_EXCEPTION_PROPAGATION
+RR NO_FINALIZATION
+RR NO_IMPLICIT_DYNAMIC_CODE
+RV NO_IMPLICIT_LOOPS
+RR NO_PROTECTED_TYPES
+RR NO_RECURSION
+RR NO_SECONDARY_STACK
+RR NO_TASKING
+RV NO_DEFAULT_INITIALIZATION
+RV NO_IMPLEMENTATION_PRAGMAS
+RV NO_IMPLEMENTATION_RESTRICTIONS
+RV NO_ELABORATION_CODE
+RV SPARK_05
+
+U interrupts%b		interrupts.adb		22170409 NE OO PK
+W interfaces%s		interfac.ads		interfac.ali
+W system%s		system.ads		system.ali
+
+U interrupts%s		interrupts.ads		fa8d1480 EE OO PK
+W interfaces%s		interfac.ads		interfac.ali
+W system%s		system.ads		system.ali
+W system.storage_elements%s  s-stoele.adb	s-stoele.ali
+
+D ada.ads		20160209020639 3ffc8e18
+D a-unccon.ads		20160209020639 f9eb8f06
+D interfac.ads		20160209020639 129923ea
+D interrupts.ads	20160315064849 8bc73a4f
+D interrupts.adb	20160315064835 30ce4efb
+D system.ads		20160209020639 991e70bd
+D s-stoele.ads		20160209020639 facd7d98
+D s-stoele.adb		20160209020639 afc5dc80
+X 3 interfac.ads
+36K9*Interfaces 175e15 4|3w6 3r22
+58M9*Unsigned_16 4|9r12 10r12 5|7r12 10r13
+X 4 interrupts.ads
+5K9*Interrupts 19l5 19e15 5|3b14 17l5 17t15
+7R8*IVT_Entry 11e15 13r29 5|8r12
+9m7*CS{3|58M9} 5|11m7
+10m7*IP{3|58M9} 5|12m7
+13a3*IVT(7R8) 14m7 14r7 15m22 15r22 5|14m5
+17U13*Register_Interrupt_Handler 17>40 17>67 5|6b13 15l7 15t33
+17i40 Interrupt_ID{natural} 5|6b40 14r9
+17m67 Handler_Addr{6|67M9} 5|6b67 10r36
+X 5 interrupts.adb
+7m5 Addr{3|58M9} 10m5 11r13 12r13
+8r5 E{4|7R8} 11m5 12m5 14r26
+X 6 system.ads
+40K9*System 4|1w6 1r18 2r6 2r35 5|1w6 1r18 6|157e11
+67M9*Address 4|17r85 5|6r85
+X 7 s-stoele.ads
+42K16*Storage_Elements 4|2w13 2r42 7|117e28
+105M9*Integer_Address
+107V13*To_Address{6|67M9} 4|14s23
+112V13*To_Integer{105M9} 5|10s25
+

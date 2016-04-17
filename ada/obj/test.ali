@@ -1,0 +1,54 @@
+V "GNAT Lib v4.9"
+A -O2
+A -ffunction-sections
+A -fdata-sections
+A --RTS=/home/nathan/bare-bones-kernel-collection/ada/rts/boards/i386
+A -gnat2005
+A -g
+A -gnaty-
+A -gnatyI
+A -gnaty+
+A -gnatyd
+A -m32
+A -march=i386
+A -g
+A -ggdb
+A -gnatA
+P NS
+
+RN
+RR NO_ALLOCATORS
+RR NO_DELAY
+RR NO_DISPATCH
+RR NO_ENUMERATION_MAPS
+RR NO_EXCEPTION_PROPAGATION
+RR NO_FINALIZATION
+RR NO_IMPLICIT_DYNAMIC_CODE
+RR NO_PROTECTED_TYPES
+RR NO_RECURSION
+RR NO_SECONDARY_STACK
+RR NO_TASKING
+RV NO_IMPLEMENTATION_PRAGMAS
+RV NO_IMPLEMENTATION_RESTRICTIONS
+
+U test%b		test.adb		dd5e1d54 NE OO PK
+W terminal%s		terminal.adb		terminal.ali
+
+U test%s		test.ads		69ff92de EE NE OO PK
+
+D ada.ads		20160209020639 3ffc8e18
+D a-unccon.ads		20160209020639 f9eb8f06
+D interfac.ads		20160209020639 129923ea
+D system.ads		20160209020639 991e70bd
+D s-stoele.ads		20160209020639 facd7d98
+D s-stoele.adb		20160209020639 afc5dc80
+D terminal.ads		20160315061611 682aaa8b
+D test.ads		20160209020639 69ff92de
+D test.adb		20160209020639 dc8b2501
+X 7 terminal.ads
+4K9*Terminal 87e13 9|1w6 6r5
+70U13*Print_Char 9|6s14
+X 8 test.ads
+1K9*Test 3l5 3e9 9|3b14 8l5 8t9
+2U13*Test 9|4b13 7t6
+

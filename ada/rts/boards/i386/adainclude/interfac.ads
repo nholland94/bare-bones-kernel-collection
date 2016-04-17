@@ -1,1 +1,1 @@
-/home/nathan/personal/testos/rts/src/interfac.ads
+/home/nathan/bare-bones-kernel-collection/ada/rts/src/interfac.ads

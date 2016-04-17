@@ -12,12 +12,17 @@
  *
  */
 
+// These definitions were added to make this compile with -ffreestanding
+
+#define sprintf __builtin_sprintf
+
 #define _SCHEME_SOURCE
 #include "scheme-private.h"
 #if USE_MATH
 # include <math.h>
 #endif
 
+#include <stdio.h>
 #include <limits.h>
 #include <float.h>
 #include <ctype.h>
@@ -1342,19 +1347,19 @@ static int file_push(scheme *sc, const char *fname) {
   return fin!=0;
 }
 
-static void file_pop(scheme *sc) {
- if(sc->file_i != 0) {
-   sc->nesting=sc->nesting_stack[sc->file_i];
-   port_close(sc,sc->loadport,port_input);
-   sc->file_i--;
-   sc->loadport->_object._port=sc->load_stack+sc->file_i;
- }
-}
+// static void file_pop(scheme *sc) {
+//  if(sc->file_i != 0) {
+//    sc->nesting=sc->nesting_stack[sc->file_i];
+//    port_close(sc,sc->loadport,port_input);
+//    sc->file_i--;
+//    sc->loadport->_object._port=sc->load_stack+sc->file_i;
+//  }
+// }
 
-static int file_interactive(scheme *sc) {
- return sc->file_i==0 && sc->load_stack[0].rep.stdio.file==stdin
-     && sc->inport->_object._port->kind&port_file;
-}
+// static int file_interactive(scheme *sc) {
+//  return sc->file_i==0 && sc->load_stack[0].rep.stdio.file==stdin
+//      && sc->inport->_object._port->kind&port_file;
+// }
 
 static port *port_rep_from_filename(scheme *sc, const char *fn, int prop) {
   FILE *f;
@@ -1569,33 +1574,33 @@ INTERFACE void putstr(scheme *sc, const char *s) {
   }
 }
 
-static void putchars(scheme *sc, const char *s, int len) {
-  port *pt=sc->outport->_object._port;
-  if(pt->kind&port_file) {
-    fwrite(s,1,len,pt->rep.stdio.file);
-  } else {
-    for(;len;len--) {
-      if(pt->rep.string.curr!=pt->rep.string.past_the_end) {
-        *pt->rep.string.curr++=*s++;
-      } else if(pt->kind&port_srfi6&&realloc_port_string(sc,pt)) {
-        *pt->rep.string.curr++=*s++;
-      }
-    }
-  }
-}
-
-INTERFACE void putcharacter(scheme *sc, int c) {
-  port *pt=sc->outport->_object._port;
-  if(pt->kind&port_file) {
-    fputc(c,pt->rep.stdio.file);
-  } else {
-    if(pt->rep.string.curr!=pt->rep.string.past_the_end) {
-      *pt->rep.string.curr++=c;
-    } else if(pt->kind&port_srfi6&&realloc_port_string(sc,pt)) {
-        *pt->rep.string.curr++=c;
-    }
-  }
-}
+// static void putchars(scheme *sc, const char *s, int len) {
+//   port *pt=sc->outport->_object._port;
+//   if(pt->kind&port_file) {
+//     fwrite(s,1,len,pt->rep.stdio.file);
+//   } else {
+//     for(;len;len--) {
+//       if(pt->rep.string.curr!=pt->rep.string.past_the_end) {
+//         *pt->rep.string.curr++=*s++;
+//       } else if(pt->kind&port_srfi6&&realloc_port_string(sc,pt)) {
+//         *pt->rep.string.curr++=*s++;
+//       }
+//     }
+//   }
+// }
+//
+// INTERFACE void putcharacter(scheme *sc, int c) {
+//   port *pt=sc->outport->_object._port;
+//   if(pt->kind&port_file) {
+//     fputc(c,pt->rep.stdio.file);
+//   } else {
+//     if(pt->rep.string.curr!=pt->rep.string.past_the_end) {
+//       *pt->rep.string.curr++=c;
+//     } else if(pt->kind&port_srfi6&&realloc_port_string(sc,pt)) {
+//         *pt->rep.string.curr++=c;
+//     }
+//   }
+// }
 
 /* read characters up to delimiter, but cater to character constants */
 static char *readstr_upto(scheme *sc, char *delim) {
@@ -3979,60 +3984,60 @@ static pointer opexe_5(scheme *sc, enum scheme_opcodes op) {
 
      switch (op) {
      /* ========== reading part ========== */
-     case OP_READ:
-          if(!is_pair(sc->args)) {
-               s_goto(sc,OP_READ_INTERNAL);
-          }
-          if(!is_inport(car(sc->args))) {
-               Error_1(sc,"read: not an input port:",car(sc->args));
-          }
-          if(car(sc->args)==sc->inport) {
-               s_goto(sc,OP_READ_INTERNAL);
-          }
-          x=sc->inport;
-          sc->inport=car(sc->args);
-          x=cons(sc,x,sc->NIL);
-          s_save(sc,OP_SET_INPORT, x, sc->NIL);
-          s_goto(sc,OP_READ_INTERNAL);
-
-     case OP_READ_CHAR: /* read-char */
-     case OP_PEEK_CHAR: /* peek-char */ {
-          int c;
-          if(is_pair(sc->args)) {
-               if(car(sc->args)!=sc->inport) {
-                    x=sc->inport;
-                    x=cons(sc,x,sc->NIL);
-                    s_save(sc,OP_SET_INPORT, x, sc->NIL);
-                    sc->inport=car(sc->args);
-               }
-          }
-          c=inchar(sc);
-          if(c==EOF) {
-               s_return(sc,sc->EOF_OBJ);
-          }
-          if(sc->op==OP_PEEK_CHAR) {
-               backchar(sc,c);
-          }
-          s_return(sc,mk_character(sc,c));
-     }
-
-     case OP_CHAR_READY: /* char-ready? */ {
-          pointer p=sc->inport;
-          int res;
-          if(is_pair(sc->args)) {
-               p=car(sc->args);
-          }
-          res=p->_object._port->kind&port_string;
-          s_retbool(res);
-     }
-
-     case OP_SET_INPORT: /* set-input-port */
-          sc->inport=car(sc->args);
-          s_return(sc,sc->value);
-
-     case OP_SET_OUTPORT: /* set-output-port */
-          sc->outport=car(sc->args);
-          s_return(sc,sc->value);
+//      case OP_READ:
+//           if(!is_pair(sc->args)) {
+//                s_goto(sc,OP_READ_INTERNAL);
+//           }
+//           if(!is_inport(car(sc->args))) {
+//                Error_1(sc,"read: not an input port:",car(sc->args));
+//           }
+//           if(car(sc->args)==sc->inport) {
+//                s_goto(sc,OP_READ_INTERNAL);
+//           }
+//           x=sc->inport;
+//           sc->inport=car(sc->args);
+//           x=cons(sc,x,sc->NIL);
+//           s_save(sc,OP_SET_INPORT, x, sc->NIL);
+//           s_goto(sc,OP_READ_INTERNAL);
+// 
+//      case OP_READ_CHAR: /* read-char */
+//      case OP_PEEK_CHAR: /* peek-char */ {
+//           int c;
+//           if(is_pair(sc->args)) {
+//                if(car(sc->args)!=sc->inport) {
+//                     x=sc->inport;
+//                     x=cons(sc,x,sc->NIL);
+//                     s_save(sc,OP_SET_INPORT, x, sc->NIL);
+//                     sc->inport=car(sc->args);
+//                }
+//           }
+//           c=inchar(sc);
+//           if(c==EOF) {
+//                s_return(sc,sc->EOF_OBJ);
+//           }
+//           if(sc->op==OP_PEEK_CHAR) {
+//                backchar(sc,c);
+//           }
+//           s_return(sc,mk_character(sc,c));
+//      }
+// 
+//      case OP_CHAR_READY: /* char-ready? */ {
+//           pointer p=sc->inport;
+//           int res;
+//           if(is_pair(sc->args)) {
+//                p=car(sc->args);
+//           }
+//           res=p->_object._port->kind&port_string;
+//           s_retbool(res);
+//      }
+// 
+//      case OP_SET_INPORT: /* set-input-port */
+//           sc->inport=car(sc->args);
+//           s_return(sc,sc->value);
+// 
+//      case OP_SET_OUTPORT: /* set-output-port */
+//           sc->outport=car(sc->args);
+//           s_return(sc,sc->value);
 
      case OP_RDSEXPR:
           switch (sc->tok) {
@@ -4778,32 +4783,32 @@ void scheme_deinit(scheme *sc) {
 void scheme_load_file(scheme *sc, FILE *fin)
 { scheme_load_named_file(sc,fin,0); }
 
-void scheme_load_named_file(scheme *sc, FILE *fin, const char *filename) {
-  dump_stack_reset(sc);
-  sc->envir = sc->global_env;
-  sc->file_i=0;
-  sc->load_stack[0].kind=port_input|port_file;
-  sc->load_stack[0].rep.stdio.file=fin;
-  sc->loadport=mk_port(sc,sc->load_stack);
-  sc->retcode=0;
-  if(fin==stdin) {
-    sc->interactive_repl=1;
-  }
-
-#if SHOW_ERROR_LINE
-  sc->load_stack[0].rep.stdio.curr_line = 0;
-  if(fin!=stdin && filename)
-    sc->load_stack[0].rep.stdio.filename = store_string(sc, strlen(filename), filename, 0);
-#endif
-
-  sc->inport=sc->loadport;
-  sc->args = mk_integer(sc,sc->file_i);
-  Eval_Cycle(sc, OP_T0LVL);
-  typeflag(sc->loadport)=T_ATOM;
-  if(sc->retcode==0) {
-    sc->retcode=sc->nesting!=0;
-  }
-}
+// void scheme_load_named_file(scheme *sc, FILE *fin, const char *filename) {
+//   dump_stack_reset(sc);
+//   sc->envir = sc->global_env;
+//   sc->file_i=0;
+//   sc->load_stack[0].kind=port_input|port_file;
+//   sc->load_stack[0].rep.stdio.file=fin;
+//   sc->loadport=mk_port(sc,sc->load_stack);
+//   sc->retcode=0;
+//   if(fin==stdin) {
+//     sc->interactive_repl=1;
+//   }
+// 
+// #if SHOW_ERROR_LINE
+//   sc->load_stack[0].rep.stdio.curr_line = 0;
+//   if(fin!=stdin && filename)
+//     sc->load_stack[0].rep.stdio.filename = store_string(sc, strlen(filename), filename, 0);
+// #endif
+// 
+//   sc->inport=sc->loadport;
+//   sc->args = mk_integer(sc,sc->file_i);
+//   Eval_Cycle(sc, OP_T0LVL);
+//   typeflag(sc->loadport)=T_ATOM;
+//   if(sc->retcode==0) {
+//     sc->retcode=sc->nesting!=0;
+//   }
+// }
 
 void scheme_load_string(scheme *sc, const char *cmd) {
   dump_stack_reset(sc);

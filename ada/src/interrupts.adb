@@ -8,8 +8,8 @@ package body Interrupts is
     E    : IVT_Entry;
   begin
     Addr := Unsigned_16(To_Integer(Handler_Addr));
-    E.CS := Shift_Right(Addr, 4);
-    E.IP := Addr - E.CS;
+    E.CS := Addr / 16;
+    E.IP := Addr rem 16;
 
     IVT(Interrupt_ID) := E;
   end Register_Interrupt_Handler;

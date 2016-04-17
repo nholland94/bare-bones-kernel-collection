@@ -1,4 +1,4 @@
-V "GNAT Lib v4.8"
+V "GNAT Lib v4.9"
 A -O2
 A -ffunction-sections
 A -fdata-sections
@@ -27,24 +27,26 @@ RR NO_SECONDARY_STACK
 RR NO_TASKING
 RV NO_IMPLEMENTATION_PRAGMAS
 RV NO_IMPLEMENTATION_RESTRICTIONS
-RV SPARK
+RV SPARK_05
 
 U system.machine_code%s	s-maccod.ads		96a50b73 NE OL PU PK
 W system%s		system.ads		system.ali
 
-D system.ads		20160103055241 991e70bd
-D s-maccod.ads		20160102191302 0fbb7bce
+D system.ads		20160209020639 991e70bd
+D s-maccod.ads		20160209020639 0fbb7bce
 X 1 system.ads
 40K9*System 157e11 2|36r9 130r5
 X 2 s-maccod.ads
-36K16*Machine_Code 1|40k9 2|130l12 130e24
-43I9*Asm_Input_Operand 48r34 52r34 78r17 85r17 106r17 113r17 121c9 127r34
-44I9*Asm_Output_Operand 49r34 55r34 70r17 84r17 98r17 112r17 122c9 128r34
+36K16*Machine_Code 1|40k9 2|121E9 130l12 130e24
+43I9*Asm_Input_Operand<integer> 48r34 52r34 78r17 85r17 106r17 113r17 121c9
+. 127r34
+44I9*Asm_Output_Operand<integer> 49r34 55r34 70r17 84r17 98r17 112r17 122c9
+. 128r34
 48i4*No_Input_Operands{43I9} 78r38 85r39 106r38 113r39 127c4
 49i4*No_Output_Operands{44I9} 70r39 84r39 98r39 112r39 128c4
 51A9*Asm_Input_Operand_List(43I9)<integer> 64r17 71r17 92r17 99r17
 54A9*Asm_Output_Operand_List(44I9)<integer> 63r17 77r17 91r17 105r17
-57I9*Asm_Insn 94r42 101r42 108r42 115r42 123c9
+57I9*Asm_Insn<integer> 94r42 101r42 108r42 115r42 123c9
 61U14*Asm 62>6 63>6 64>6 65>6 66>6 117b30
 62s6 Template{string}
 63a6 Outputs{54A9}

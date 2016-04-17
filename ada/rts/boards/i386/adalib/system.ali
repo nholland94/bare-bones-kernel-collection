@@ -1,13 +1,12 @@
-V "GNAT Lib v4.8"
-A --RTS=/home/nathan/personal/testos/rts/boards/i386
+V "GNAT Lib v4.9"
+A -O2
+A -ffunction-sections
+A -fdata-sections
 A -gnatp
 A -gnatg
 A -gnat2005
 A -g
-A -gnaty-
-A -gnatyI
-A -gnaty+
-A -gnatyd
+A -gnatg
 A -m32
 A -march=i386
 A -gnatA
@@ -27,13 +26,13 @@ RR NO_SECONDARY_STACK
 RR NO_TASKING
 RV NO_IMPLEMENTATION_PRAGMAS
 RV NO_IMPLEMENTATION_RESTRICTIONS
-RV SPARK
+RV SPARK_05
 
 U system%s		system.ads		991e70bd NE OL PU PK
 
-D system.ads		20160103055241 991e70bd
+D system.ads		20160209020639 991e70bd
 X 1 system.ads
-40K9*System 157l5 157e11
+40K9*System 116E4 157l5 157e11
 46E9*Name 46e35 47r27
 46n18*SYSTEM_NAME_GNAT{46E9} 47r35
 47e4*System_Name{46E9}

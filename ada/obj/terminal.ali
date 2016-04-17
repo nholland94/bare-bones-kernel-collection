@@ -1,0 +1,108 @@
+V "GNAT Lib v4.9"
+A -O2
+A -ffunction-sections
+A -fdata-sections
+A --RTS=/home/nathan/bare-bones-kernel-collection/ada/rts/boards/i386
+A -gnat2005
+A -g
+A -gnaty-
+A -gnatyI
+A -gnaty+
+A -gnatyd
+A -m32
+A -march=i386
+A -g
+A -ggdb
+A -gnatA
+P NS
+
+RN
+RR NO_ALLOCATORS
+RR NO_DELAY
+RR NO_DISPATCH
+RR NO_ENUMERATION_MAPS
+RR NO_EXCEPTION_PROPAGATION
+RR NO_FINALIZATION
+RR NO_IMPLICIT_DYNAMIC_CODE
+RV NO_IMPLICIT_LOOPS
+RR NO_PROTECTED_TYPES
+RR NO_RECURSION
+RR NO_SECONDARY_STACK
+RR NO_TASKING
+RV NO_DEFAULT_INITIALIZATION
+RV NO_IMPLEMENTATION_PRAGMAS
+RV NO_IMPLEMENTATION_RESTRICTIONS
+RV NO_ELABORATION_CODE
+RV SPARK_05
+
+U terminal%b		terminal.adb		f45a3945 OO PK
+W interfaces%s		interfac.ads		interfac.ali
+W system%s		system.ads		system.ali
+
+U terminal%s		terminal.ads		0bf9a7ae EE OO PK
+W interfaces%s		interfac.ads		interfac.ali
+W system%s		system.ads		system.ali
+W system.storage_elements%s  s-stoele.adb	s-stoele.ali
+
+D ada.ads		20160209020639 3ffc8e18
+D a-unccon.ads		20160209020639 f9eb8f06
+D interfac.ads		20160209020639 129923ea
+D system.ads		20160209020639 991e70bd
+D s-stoele.ads		20160209020639 facd7d98
+D s-stoele.adb		20160209020639 afc5dc80
+D terminal.ads		20160315061611 682aaa8b
+D terminal.adb		20160209020639 17f7c099
+X 3 interfac.ads
+36K9*Interfaces 175e15 8|2w6 2r22
+X 4 system.ads
+40K9*System 157e11 7|1w6 1r18 2r6 2r35 8|1w6 1r18
+67M9*Address
+X 5 s-stoele.ads
+42K16*Storage_Elements 117e28 7|2w13 2r42
+107V13*To_Address{4|67M9} 7|82s32
+X 7 terminal.ads
+4K9*Terminal 75E3 87l5 87e13 8|4b14 51l5 51t13
+6E8*VGA_Color 23e4 25r7 44r7 48r20 49r20
+7n5*Black{6E8} 26r5 85r62
+8n5*Blue{6E8} 27r5
+9n5*Green{6E8} 28r5 85r83
+10n5*Cyan{6E8} 29r5
+11n5*Red{6E8} 30r5
+12n5*Magenta{6E8} 31r5
+13n5*Brown{6E8} 32r5
+14n5*Light_Grey{6E8} 33r5
+15n5*Dark_Grey{6E8} 34r5
+16n5*Light_Blue{6E8} 35r5
+17n5*Light_Green{6E8} 36r5
+18n5*Light_Cyan{6E8} 37r5
+19n5*Light_Red{6E8} 38r5
+20n5*Light_Magenta{6E8} 39r5
+21n5*Light_Brown{6E8} 40r5
+22n5*White{6E8} 41r5
+46R8*Cell_Color 50e15 52r7 58r7 63r15 85r33
+48e7*Foreground{6E8} 54r7 85m69
+49e7*Background{6E8} 55r7 85m48
+60R8*Cell 64e15 66r7 68r29 81r69 8|6r29 12r18
+62e7*Char{character} 8|14m20 25m15
+63r7*Color{46R8} 8|14m33 25m29
+68U13*Put_Cell 68>22 68>35 68>51 8|6b13 9l7 9t15 18s9 25s5
+68r22 C{60R8} 8|6b22 8r27
+68i35 X{natural} 8|6b35 8r21
+68i51 Y{natural} 8|6b51 8r18
+69U13*Clear 8|11b13 21l7 21t12
+70U13*Print_Char 70>24 8|23b13 37l7 37t17 42s7
+70e24 Char{character} 8|23b24 25r23
+71U13*Print_String 71>26 8|39b13 44l7 44t19
+71s26 Str{string} 8|39b26 41r18 42r18
+75i3 Row{natural} 8|25r67 31m7 31r14 33r10 34m9 48m3
+76i3 Column{natural} 8|25r59 27m5 27r15 29r8 30m7 49m3
+78i3 VGA_HEIGHT{natural} 81r30 8|16r33 33r17
+79i3 VGA_WIDTH{natural} 81r51 8|17r35 29r18
+81a3 Video_Memory(60R8) 82m7 82r7 83m22 83r22 8|8m5
+85r3 Default_Cell_Color{46R8} 8|14r42 25r38
+X 8 terminal.adb
+12r5 Blank_Cell{7|60R8} 14m5 18r18
+16i9 Y{integer} 18r33
+17i11 X{integer} 18r30
+41i9 Index{integer} 42r22
+

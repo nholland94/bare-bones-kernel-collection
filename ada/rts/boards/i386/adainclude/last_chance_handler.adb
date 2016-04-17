@@ -1,9 +1,14 @@
 with System; use System;
-with System.Address_Image;
 with System.Storage_Elements; use System.Storage_Elements;
 
 procedure Last_Chance_Handler
   (Source_Location : System.Address; Line : Integer) is
+
+   pragma Unreferenced (Source_Location, Line);
+
+   pragma Warnings (Off,
+      "address value may be incompatible with alignment of object");
+
    type VGA_Color is (
      Black,
      Blue,
@@ -71,12 +76,12 @@ procedure Last_Chance_Handler
    for Video_Memory'Address use To_Address (16#B8000#);
    pragma Import (Ada, Video_Memory);
 
-   Color : constant Cell_Color := ( Foreground => Green, Background => Black );
+   Color : constant Cell_Color := (Foreground => Green, Background => Black);
    Message : constant String := "Error!";
-   Address_Int : Address_Integer := To_Integer(Source_Location);
+   --  Address_Int : Address_Integer := To_Integer (Source_Location);
 
-   Row : Natural := Message'Last + 1;
-   Char : Character;
+   --  Row : Natural := Message'Last + 1;
+   --  Char : Character;
 
 begin
    --  TODO: dump info to screen
@@ -88,15 +93,15 @@ begin
       );
    end loop;
 
-   for I in Natural range 1 .. 8 loop
-      Digit := (Address_Int % I * 16) - ((I - 1) * 16);
-      Char := Character'Val (Digit + 48);
+   --  for I in Natural range 1 .. 8 loop
+   --     Digit := (Address_Int rem I * 16) - ((I - 1) * 16);
+   --     Char := Character'Val (Digit + 48);
 
-      Video_Memory (0, Message'Last - I) := (
-         Char => Char,
-         Color => Color
-      );
-   end loop;
+   --     Video_Memory (0, Message'Last - I) := (
+   --        Char => Char,
+   --        Color => Color
+   --     );
+   --  end loop;
 
    loop
       null;

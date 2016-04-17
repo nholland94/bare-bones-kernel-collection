@@ -1,1 +1,1 @@
-/home/nathan/personal/testos/rts/src/s-maccod.ads
+/home/nathan/bare-bones-kernel-collection/ada/rts/src/s-maccod.ads

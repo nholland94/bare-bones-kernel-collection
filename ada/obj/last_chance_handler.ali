@@ -1,0 +1,87 @@
+V "GNAT Lib v4.9"
+A -O2
+A -ffunction-sections
+A -fdata-sections
+A -gnat2005
+A -g
+A -gnatg
+A -m32
+A -march=i386
+A -gnatA
+P NS
+
+RN
+RR NO_ALLOCATORS
+RR NO_DELAY
+RR NO_DISPATCH
+RR NO_ENUMERATION_MAPS
+RR NO_EXCEPTION_PROPAGATION
+RR NO_FINALIZATION
+RR NO_IMPLICIT_DYNAMIC_CODE
+RV NO_IMPLICIT_LOOPS
+RR NO_PROTECTED_TYPES
+RR NO_RECURSION
+RR NO_SECONDARY_STACK
+RR NO_TASKING
+RV NO_IMPLEMENTATION_PRAGMAS
+RV NO_IMPLEMENTATION_RESTRICTIONS
+RV SPARK_05
+
+U last_chance_handler%b	last_chance_handler.adb	c09a1df2 NE OO SU
+W interfaces%s		interfac.ads		interfac.ali
+W system%s		system.ads		system.ali
+W system.storage_elements%s  s-stoele.adb	s-stoele.ali
+
+U last_chance_handler%s	last_chance_handler.ads	22d516f1 EE NE OO SU
+W system%s		system.ads		system.ali
+
+D ada.ads		20160209020639 3ffc8e18
+D a-unccon.ads		20160209020639 f9eb8f06
+D interfac.ads		20160209020639 129923ea
+D last_chance_handler.ads  20160209020639 bbcb664c
+D last_chance_handler.adb  20160315064817 1882769b
+D system.ads		20160209020639 991e70bd
+D s-stoele.ads		20160209020639 facd7d98
+D s-stoele.adb		20160209020639 afc5dc80
+X 4 last_chance_handler.ads
+3U11*Last_Chance_Handler 4>4 4>38 5i<c,__gnat_last_chance_handler>19 5|4b11
+. 109l5 109t24
+4m4 Source_Location{6|67M9} 5|5b4 7r25
+4i38 Line{integer} 5|5b38 7r42
+X 5 last_chance_handler.adb
+12E9 VGA_Color 29e5 31r8 50r8 54r21 55r21
+13n6 Black{12E9} 32r6 79r71
+14n6 Blue{12E9} 33r6
+15n6 Green{12E9} 34r6 79r50
+16n6 Cyan{12E9} 35r6
+17n6 Red{12E9} 36r6
+18n6 Magenta{12E9} 37r6
+19n6 Brown{12E9} 38r6
+20n6 Light_Grey{12E9} 39r6
+21n6 Dark_Grey{12E9} 40r6
+22n6 Light_Blue{12E9} 41r6
+23n6 Light_Green{12E9} 42r6
+24n6 Light_Cyan{12E9} 43r6
+25n6 Light_Red{12E9} 44r6
+26n6 Light_Magenta{12E9} 45r6
+27n6 Light_Brown{12E9} 46r6
+28n6 White{12E9} 47r6
+52R9 Cell_Color 56e16 58r8 64r8 69r18 79r21
+54e8 Foreground{12E9} 60r8 79m36
+55e8 Background{12E9} 61r8 79m57
+66R9 Cell 70e17 75r70
+68e10 Char{character} 91m10
+69r10 Color{52R9} 92m10
+72i4 VGA_HEIGHT{natural} 75r31
+73i4 VGA_WIDTH{natural} 75r52
+75a4 Video_Memory(66R9) 76m8 76r8 77m24 77r24 90m7
+79r4 Color{52R9} 92r19
+80a4 Message{string} 89r17 91r18
+89i8 Index{integer} 90r24 91r27
+X 6 system.ads
+40K9*System 4|1w6 4r22 5|1w6 1r18 2r6 2r35 5r22 6|157e11
+67M9*Address 4|4r29 5|5r29
+X 7 s-stoele.ads
+42K16*Storage_Elements 5|2w13 2r42 7|117e28
+107V13*To_Address{6|67M9} 5|76s33
+

@@ -1,1 +1,1 @@
-/home/nathan/personal/testos/rts/src/g-souinf.ads
+/home/nathan/bare-bones-kernel-collection/ada/rts/src/g-souinf.ads

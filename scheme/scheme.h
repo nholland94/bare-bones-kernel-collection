@@ -3,8 +3,6 @@
 #ifndef _SCHEME_H
 #define _SCHEME_H
 
-#include <stdio.h>
-
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -32,7 +30,6 @@ extern "C" {
 # endif
 #endif
 
-#if USE_NO_FEATURES
 # define USE_MATH 0
 # define USE_CHAR_CLASSIFIERS 0
 # define USE_ASCII_NAMES 0
@@ -42,7 +39,6 @@ extern "C" {
 # define USE_COLON_HOOK 0
 # define USE_DL 0
 # define USE_PLIST 0
-#endif
 
 /*
  * Leave it defined if you want continuations, and also for the Sharp Zaurus.

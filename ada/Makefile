@@ -1,30 +1,27 @@
 ARCH = i386
 RTS_DIR = $(shell pwd)/rts/boards/$(ARCH)
 
-ifeq ($(ARCH),i386)
 GNATMAKE = gnatmake
+
+OBJS = obj/boot.o obj/multiboot.o obj/terminal.o
+.PHONY: obj/multiboot.o obj/terminal.o
+
+ifeq ($(ARCH),i386)
 AS = as
 AS_FLAGS = --32
 
-OBJS = obj/boot.o obj/multiboot.o obj/terminal.o
 BOARD = pc
 
 GRUB_LIB=/usr/lib/grub/i386-pc
-
-.PHONY: obj/multiboot.o obj/terminal.o
 endif
 
 ifeq ($(ARCH),x86_64)
-GNATMAKE = gnatmake
 AS = as
 AS_FLAGS = --64
 
-OBJS = obj/boot.o obj/multiboot.o obj/terminal.o
 BOARD = pc
 
 GRUB_LIB=/usr/lib/grub/x86_64-pc
-
-.PHONY: obj/multiboot.o obj/terminal.o
 endif
 
 all: kernel.bin

@@ -18,7 +18,6 @@ header:
 
 .global boot
 boot:
-
   mov  $0xB8000, %ebx
   mov  $0x3, %eax
   shl  $4, %eax

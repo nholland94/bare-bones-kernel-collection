@@ -1,0 +1,63 @@
+V "GNAT Lib v4.9"
+M P W=b
+A -O2
+A -ffunction-sections
+A -fdata-sections
+A --RTS=/home/nathan/bare-bones-kernel-collection/ada/rts/boards/i386
+A -gnat2005
+A -g
+A -gnaty-
+A -gnatyI
+A -gnaty+
+A -gnatyd
+A -m32
+A -march=i386
+A -g
+A -ggdb
+A -gnatA
+P NS
+
+RN
+RR NO_ALLOCATORS
+RR NO_DELAY
+RR NO_DISPATCH
+RR NO_ENUMERATION_MAPS
+RR NO_EXCEPTION_PROPAGATION
+RR NO_FINALIZATION
+RR NO_IMPLICIT_DYNAMIC_CODE
+RR NO_PROTECTED_TYPES
+RR NO_RECURSION
+RR NO_SECONDARY_STACK
+RR NO_TASKING
+RV NO_IMPLEMENTATION_PRAGMAS
+RV NO_IMPLEMENTATION_RESTRICTIONS
+
+U kernel_init%b		kernel_init.adb		e4fba2c9 NE OO SU
+W interrupts%s		interrupts.adb		interrupts.ali
+W system%s		system.ads		system.ali
+W terminal%s		terminal.adb		terminal.ali
+W test%s		test.adb		test.ali
+
+D ada.ads		20160209020639 3ffc8e18
+D a-unccon.ads		20160209020639 f9eb8f06
+D interfac.ads		20160209020639 129923ea
+D interrupts.ads	20160315064849 8bc73a4f
+D kernel_init.adb	20160315045257 6ee9a0d3
+D system.ads		20160209020639 991e70bd
+D s-stoele.ads		20160209020639 facd7d98
+D s-stoele.adb		20160209020639 afc5dc80
+D terminal.ads		20160315061611 682aaa8b
+D test.ads		20160209020639 69ff92de
+X 4 interrupts.ads
+5K9*Interrupts 19e15 5|2w6 7r3
+17U13*Register_Interrupt_Handler 5|7s14
+X 5 kernel_init.adb
+5U11*Kernel_Init 5b11 12l5 12t16
+X 9 terminal.ads
+4K9*Terminal 5|1w6 9r3 11r3 9|87e13
+69U13*Clear 5|9s12
+71U13*Print_String 5|11s12
+X 10 test.ads
+1K9*Test 5|3w6 7r49 10|3e9
+2U13*Test 5|7r54
+

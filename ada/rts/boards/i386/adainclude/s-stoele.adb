@@ -1,1 +1,1 @@
-/home/nathan/personal/testos/rts/src/s-stoele.adb
+/home/nathan/bare-bones-kernel-collection/ada/rts/src/s-stoele.adb
